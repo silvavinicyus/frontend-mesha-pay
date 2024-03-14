@@ -25,16 +25,19 @@ export async function authenticate(_currentState: unknown, formData: FormData) {
     if (result.status === 200) {
       const data = await result.json()                
 
-      cookies().set('currentUser', data['user'])
+      cookies().set('currentUser', JSON.stringify(data['user']))
       cookies().set('token', data.token)
 
       return {
         success: true,
+        currentUser: data['user'],
+        token: data.token
       }
     }
     
     throw new Error()
-  } catch {    
+  } catch(err) {    
+    console.log(err)
     return {
       success: false,
       error: "Error in login, please try again later!"
@@ -73,5 +76,47 @@ export async function createAccount(_currentState: unknown, formData: FormData) 
   } catch (err) {    
     console.log(err)
     return {success: false, error: "Error while creating account, try again later!"}
+  }
+}
+
+export async function createTreatment(_currentState: unknown, formData: FormData) {
+  const token = cookies().get('token')?.value
+
+  try {
+    const procedures = formData.get("procedures")?.toString().split(',').map((procedure) => +procedure)
+        
+    const result = await fetch('http://localhost:3333/treatments', {
+      method: 'POST',
+      body: JSON.stringify({
+        procedures,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+      } 
+    })        
+
+    if (result.status === 201) {
+      return { success: true }
+    } else {
+      throw new Error()        
+    }
+  } catch (err) {    
+    console.log(err)
+    return {success: false, error: "Error while creating treatment, try again later!"}
+  }
+}
+
+export async function logout() {
+  try {
+    cookies().delete('currentUser')
+    cookies().delete('token')
+
+    return {
+      success: true
+    }
+
+  } catch(err) {
+    return {success: false, error: "Error while performing logout, try again later!"}
   }
 }
