@@ -1,21 +1,22 @@
 'use client'
 
-import { Loader2, MoveRight } from "lucide-react";
-import Image from "next/image";
-import { useFormState, useFormStatus } from "react-dom";
-import MeshaLogo from '../icon.png';
-import { authenticate } from "../lib/actions";
-import Link from "next/link";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import Image from 'next/image'
+import MeshaLogo from '../../icon.png'
+import { Input } from '@/components/input'
+import { Loader2, MoveRight } from 'lucide-react'
+import { useFormState, useFormStatus } from 'react-dom'
+import { createAccount } from '@/app/lib/actions'
+import Link from 'next/link'
+import { useEffect } from 'react'
+import { redirect } from 'next/navigation'
 
-export default function Home() {      
-  const [result, dispatch] = useFormState(authenticate, undefined)
+export default function CreateAccount() {
+  const [ result, dispatch] = useFormState(createAccount, undefined)
   const { pending } = useFormStatus()
- 
+  
   useEffect(() => {
     if (result?.success) {
-      redirect('/treatment')
+      redirect('/login')
     }
   }, [result?.success])
 
@@ -44,28 +45,15 @@ export default function Home() {
 
       <div className="w-full h-full bg-white flex flex-col pl-24">
         <div className="flex-1 flex justify-center flex-col text-zinc-400">
-          <span className="mb-12 w-64"> Por favor digite seu email e senha para fazer login. </span>
-
+          <span className="mb-12 w-64"> Para criar uma nova conta digite seu nome, email e senha. </span>
 
           <form action={dispatch}>
             <div className="flex flex-col gap-8 w-full">
-              <input 
-                className="w-80 h-14 rounded-full pl-7 flex items-center gap-1.5 text-sm border border-zinc-300 focus:border-zinc-600 focus:outline-none focus:font-bold"
-                type="text" 
-                name="email" 
-                placeholder="EMAIL" 
-                required                
-              />
-
-              <input 
-                className="w-80 h-14 rounded-full pl-7 flex items-center gap-1.5 text-sm border border-zinc-300 focus:border-zinc-600 focus:outline-none focus:font-bold"
-                type="password" 
-                name="password" 
-                placeholder="PASSWORD"                
-                required
-              />
+              <Input type="text" name="name" placeholder="Nome"  required />
+              <Input type="email" name="email" placeholder="Email" required />
+              <Input type="password" name="password" placeholder="Senha" required/>
+              <Input type="password" name="password_confirmation" placeholder="Confirmação de senha" required/>
               <div>{result?.error && <p className='text-red-500 font-bold'>{result.error}</p>}</div>
-
               <button 
                 disabled={pending} 
                 type="submit"
@@ -83,11 +71,11 @@ export default function Home() {
         </div>
                 
         <footer className="flex gap-8 items-center text-zinc-400 pb-12">
-          <Link href="/account/create"> Criar Conta </Link>
+          <Link href='/login'> Já possui uma conta? <br/> Entrar</Link>
           <div className="w-2 h-2 bg-zinc-400 border rounded-full"></div>
           <p> Privacy Policy </p>
         </footer>
       </div>
-    </div>
+    </div>        
   )
 }
