@@ -1,3 +1,5 @@
+"use client";
+
 import MeshaLogo from '../app/icon.png'
 import Image from 'next/image'
 import { Badge } from './ui/badge'
@@ -44,6 +46,8 @@ export function HeaderPage() {
           Sair                         
         </Badge>
       </div>
+
+      
     </div>
   )
 }

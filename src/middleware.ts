@@ -5,8 +5,8 @@ export function middleware(request: NextRequest) {
   const currentUser = 
     request.cookies.get('currentUser')?.value 
       ? JSON.parse(request.cookies.get('currentUser')!.value) 
-      : undefined
-      
+      : undefined           
+
   if (currentUser && currentUser['type'] === IUserType.CLIENT && !request.nextUrl.pathname.startsWith('/clients')) {       
     return Response.redirect(new URL('/clients/treatments', request.url))
   }

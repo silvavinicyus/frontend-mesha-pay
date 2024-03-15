@@ -8,7 +8,7 @@ export interface IUser {
   uuid: string;
   name: string;
   email: string
-  type: IUserType;
-  created_at: Date;
-  updated_at: Date;
+  type: string;
+  created_at: string;
+  updated_at: string;
 }

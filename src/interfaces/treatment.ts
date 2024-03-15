@@ -6,6 +6,7 @@ interface ITreatmentProcedure {
   procedure_id: number
   treatment_id: number
   procedure: IProcedure
+  comission_value: number
   created_at: string
 }
 
