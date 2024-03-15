@@ -28,7 +28,7 @@ Siga os seguintes passos para instalação e correta execução do projeto:
 * 2 - Instale as dependencias do projeto
   ```npm install```
 
-* 3 - Execute o projeto para rodar as migrações do banco de dados
+* 3 - Execute o projeto
   ```npm run dev```
   
 * 4 - O projeto está configurado e pronto para uso.
