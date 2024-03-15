@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export async function authenticate(_currentState: unknown, formData: FormData) {
@@ -118,5 +119,37 @@ export async function logout() {
 
   } catch(err) {
     return {success: false, error: "Error while performing logout, try again later!"}
+  }
+}
+
+export async function updateTreatment(duration: number, uuid: string) {
+  try {
+    const token = cookies().get('token')?.value    
+
+    const result = await fetch(`http://localhost:3333/treatments/close/${uuid}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        duration,
+      }),
+      headers: {        
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`        
+      }
+    })
+                
+    if(result.status !== 200) {
+      throw new Error()
+    }
+    const data = await result.json()    
+
+    return {
+      success: true,
+      updatedTreatment: data
+    }
+  } catch(err) {
+    console.log(err)
+    return {
+      error: "failed to update treatment, try again!"
+    }
   }
 }

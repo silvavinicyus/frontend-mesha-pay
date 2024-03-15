@@ -1,7 +1,7 @@
 import React from "react"
 
 interface NavigationButtonProps {
-  onClick: () => void
+  onClick?: () => void
   title: string
   selected: boolean
   children?: React.ReactNode
