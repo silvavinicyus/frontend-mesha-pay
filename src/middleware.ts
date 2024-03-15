@@ -15,11 +15,11 @@ export function middleware(request: NextRequest) {
     return Response.redirect(new URL('/doctors/treatments', request.url))
   }
  
-  if (!currentUser && !request.nextUrl.pathname.startsWith('/login')) {       
+  if (!currentUser && !request.nextUrl.pathname.startsWith('/login') && !request.nextUrl.pathname.startsWith('/account/create')) {       
     return Response.redirect(new URL('/login', request.url))
   }
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)', '/\/account\/create$/'],
 }

@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import MeshaLogo from '../../icon.png'
-import { Input } from '@/components/input'
+import { Input } from '@/components/ui/input'
 import { Loader2, MoveRight } from 'lucide-react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { createAccount } from '@/app/lib/actions'
