@@ -1,6 +1,14 @@
 import { IProcedure } from "./procedure";
 import { IUser } from "./user";
 
+interface ITreatmentProcedure {
+  id: number
+  procedure_id: number
+  treatment_id: number
+  procedure: IProcedure
+  created_at: string
+}
+
 export interface ITreatment {
   id: number;
   uuid: string;
@@ -10,7 +18,7 @@ export interface ITreatment {
   duration: number | null;
   value: number;
   status: string;
-  procedures?: IProcedure[]
+  treatment_procedures?: ITreatmentProcedure[]
   created_at: string;
   updated_at: string;
   doctor?: IUser

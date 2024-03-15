@@ -87,6 +87,8 @@ export function ListTreatmentsComponent({procedures, token}: IListTreatmentsComp
             <TableBody>
               {
                 treatments?.map((treatment) => {
+                  console.log(treatment.treatment_procedures)
+                  const procedures = treatment.treatment_procedures?.map((treat_proced) => treat_proced.procedure.name).join(', ')
                   return (
                     <TableRow key={treatment.id}>
                       <TableCell></TableCell>
@@ -98,23 +100,23 @@ export function ListTreatmentsComponent({procedures, token}: IListTreatmentsComp
                       </TableCell>
 
                       <TableCell className='text-zinc-500'>
-                        { treatment.comission_value }
+                        R$ { treatment.comission_value }
                       </TableCell>
 
                       <TableCell className='text-zinc-500'>
-                        { treatment.duration }
+                        { treatment.duration } min
                       </TableCell>
 
                       <TableCell className='text-zinc-500'>
-                        { treatment.procedures?.reduce((acc, next) => acc.concat(`, ${next.name}`), '') }
+                        R$ { treatment.value }                        
                       </TableCell>
 
                       <TableCell className='text-zinc-500'>
-                        { treatment.value }
+                        {procedures}
                       </TableCell>
 
                       <TableCell className='text-zinc-500'>
-                        { new Date(treatment.created_at).toLocaleTimeString() }
+                        { new Date(treatment.updated_at).toLocaleTimeString() }
                       </TableCell>
                     </TableRow>
                   )
