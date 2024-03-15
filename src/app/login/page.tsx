@@ -11,10 +11,13 @@ import { redirect } from "next/navigation";
 
 export default function Home() {      
   const [result, dispatch] = useFormState(authenticate, undefined)
-  const { pending } = useFormStatus()
- 
-  useEffect(() => {
+  const { pending } = useFormStatus()  
+  
+  useEffect(() => {  
     if (result?.success) {
+      localStorage.setItem("currentUser", JSON.stringify(result.currentUser))      
+      localStorage.setItem("token", result.token)
+
       redirect('/treatment')
     }
   }, [result?.success])
