@@ -1,38 +1,35 @@
-# frontend-mesha-pay
+# Mesha Care
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+Esse projeto busca resolver o desafio proposto pela Mesha tecnologia, de implementar com React + webpack um frontend para um sistema de atendimentos, onde por um lado o cliente pode criar novos atendimentos com varios serviços, e por outro lado o atendente irá poder iniciar e finalizar esses serviços, calculando o tempo gasto e sua comissão.
 
-First, run the development server:
+| Requisitos    |     Verao     |    Instalação  |
+| ------------- | ------------- |  ------------- |
+| NodeJs        |     20.11.0   |    <a href="https://redis.io/docs/install/install-redis/"> Install </a>  |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ * Login com email e senha
+ * Criação de novo cliente
+ * Criação de um atendimento, por parte do cliente
+ * Busca de todos os atendimentos abertos, pelos atendentes
+ * Busca de todos os atendimentos de um usuário já finalizados
+ * Finalização de um atendimento
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Instalação e Configuração
 
-## Learn More
+Siga os seguintes passos para instalação e correta execução do projeto:
 
-To learn more about Next.js, take a look at the following resources:
+* 1 - clone esse repositório no seu computador e navegue até a pasta do projeto <br>
+  ```git clone git@github.com:silvavinicyus/frontend-mesha-pay.git``` <br>
+  ```cd backend-mesha-pay``` <br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* 2 - Instale as dependencias do projeto
+  ```npm install```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* 3 - Execute o projeto para rodar as migrações do banco de dados
+  ```npm run dev```
+  
+* 4 - O projeto está configurado e pronto para uso.
+  
